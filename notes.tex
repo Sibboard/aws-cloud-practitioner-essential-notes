@@ -1,0 +1,282 @@
+\documentclass{article}
+\setcounter{section}{0}
+\usepackage{amssymb,amsthm,amsmath,latexsym} 
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\theoremstyle{definition}
+\newtheorem{df}{Definition}
+\newtheorem{kc}{KEY CONCEPT}
+
+\renewcommand{\thesection}{Module \arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+
+%All LaTeX documents have a ``preamble'' that includes the packages and macros needed to make the document compile. The file `PomonaLgcsFormatting.tex' includes the preamble for this template. You can see it in the file list on the left frame of your screen, and this document is instructed to use it with the \input{} command below.
+
+
+
+\title{AWS Cloud Practitioner Essentials \href{https://www.aws.training/Details/eLearning?id=60697}{(course link)} }
+\author{Gabriele Libianchi}
+\date{\today} 
+
+\begin{document}
+
+\maketitle
+
+%\begin{abstract}
+%\end{abstract}
+\vspace{20pt}
+Course objectives:
+\begin{itemize}
+    \item Summarize the working definition of AWS;
+    \item Differentiate between on-premises, hybrid-cloud, and all-in cloud;
+    \item Describe the basic global infrastructure of the AWS Cloud;
+    \item Explain the six benefits of the AWS Cloud;
+    \item Describe and provide an example of the core AWS services, including compute, network, databases, and storage;
+    \item Identify an appropriate solution using AWS Cloud services with various use cases;
+    \item Describe the AWS Well-Architected Framework;
+    \item Explain the shared responsibility model;
+    \item Describe the core security services within the AWS Cloud;
+    \item Describe the basics of AWS Cloud migration;
+    \item Articulate the financial benefits of the AWS Cloud for an organization’s cost management;
+    \item Define the core billing, account management, and pricing models;
+    \item Explain how to use pricing tools to make cost-effective choices for AWS services
+    % \item Differentiate between cloud computing and  deployment models;
+    % \item Describe the AWS Cloud value proposition;
+    % \item Describe the basic global infrastructure of the cloud;
+    % \item Compare the different methods of interacting with AWS;
+    % \item Describe and differentiate between AWS services domains;
+    % \item Describe the Well-Architected Framework;
+    % \item Describe basic AWS Cloud architectural principles;
+    % \item Explain the Shared Responsibility model;
+    % \item Describe security services with the AWS cloud;
+    % \item Define the billing, account management, and pricing models for the AWS platform;
+\end{itemize}
+
+\newpage
+\section{Introduction to Amazon Web Services}
+\begin{itemize}
+\item Summarize the benefits of AWS;
+\item Describe differences between on-demand delivery and cloud deployments;
+\item Summarize the pay-as-you-go pricing model.
+\end{itemize}
+\subsection{Client-Server Model}
+Client-Server Model: a customer makes a request and with permissions the server satisfies such request. AWS'server is \textbf{Amazon Elastic Compute Cloud (EC2}): virtual servers are EC2 instances.
+In computing, a client can be a web browser or desktop application that a person interacts with to make requests to computer servers. A server can be services such as Amazon Elastic Compute Cloud (Amazon EC2), a type of virtual server.
+
+For example, suppose that a client makes a request for a news article, the score in an online game, or a funny video. The server evaluates the details of this request and fulfills it by returning the information to the client.
+
+\begin{kc} "you only pay for what you use". On premises data centers are limited by capacity constraints, on AWS you can add/remove services.\end{kc}
+
+\subsection{Cloud Computing}
+\begin{df}Cloud Computing is the on-demand delivery of IT resources over the internet with pay-as-you-go pricing. (i.e. the on-demand delivery of compute power, database, storage, applications, and other IT resources through a cloud services platform via the Internet with pay-as-you-go pricing.)\end{df}
+on-demand delivery: AWS has the resourced you need WHEN you need them. (flexibility impossible when managing own data centers).\\
+
+The engine of IT resources in "not a discriminator" for better business company: \textbf{"undifferentiated heavy lifting of IT"}. Tasks that are common, repetitive and consuming,AWS takes care of this.\\
+
+\subsubsection{Deployment models for cloud computing}
+When selecting a cloud strategy, a company must consider factors such as required cloud application components, preferred resource management tools, and any legacy IT infrastructure requirements.
+\begin{itemize}
+    \item \textbf{CLOUD-BASED DEPLOYMENT}: \textbf{run} all parts of the application in the cloud, \textbf{migrate} existing application to the cloud, \textbf{design and build new application in the cloud}.\\
+    The application can be built either on \textit{low-level infrastructure} (requiring additional management by IT staff) or built using \textit{high-level services} reducing management, architecting and scaling requirements of the core infrastructure.
+    \item \textbf{ON-PREMISES DEPLOYMENT}: deploy resources by using \textbf{virtualization and resource management tools}, increase their utilization using virtualization technology and application management. This model is close to \textit{legacy IT infrastructure} but virtualization and app management increase resource utilization.
+    \item \textbf{HYBRID DEPLOYMENT}: connect could-based resource to on-premises infrastructure and integrate cloud-based resource with legacy IT applications. This model is well suited for legacy application that are better maintained on premises (governments); at the same time such apps can be paired with cloud services.
+\end{itemize}
+
+\subsubsection{Benefits of cloud computing}
+Companies advantage in using cloud computing while addressing business needs:
+\begin{itemize}
+    \item \textbf{Trade upfront expense for variable expenses}: upfront costs are the one for buying and setting up a data center, variable expenses means "pay as you use". Innovative solutions can be implemented without infrastructure costs.
+    \item \textbf{Stop spending money to run and maintain data centers}: maintenance is cost\& time expensive, better to put efforts in applications and customers.
+    \item \textbf{Stop guessing capacity}: no need to predict infrastructure capacity. Launch EC2 instances when needed and pay for the actual compute time used. \textit{Scale in }or \textit{out} according to the demand.
+    \item \textbf{Benefits from massive economies of scale}: The massive amount of Cloud providers allow them to achieve higher economies of scale that translates in lower pay-as-you-go prices.
+    \item \textbf{Increase speed and agility}: The flexibility of cloud computing makes it easier for you to develop and deploy applications. you can access new resources within minutes.
+    \item \textbf{Go global in minutes}: the global footprint of the AWS cloud enables you to quickly deploy applications worldwide with low latency for costumers.
+\end{itemize}
+
+\subsection{Bonus: Fundamental (5) Pillars of AWS}
+\subsubsection{Operational Excellence}
+This pillar focuses on how you can continuously improve your ability to run systems, create better procedures, and gain insights.
+\begin{itemize}
+    \item \textit{Mental model}: we can think of operational excellent in terms of \textbf{automation}. The more operations can be automated, the less chance there is for human error. Automation also improve internal processes by promoting a series of repeatable best practices that can be applied across the entire organization.\\
+    
+    \item \textit{Concepts}: The focus must points towards areas that require the most manual work and might have the biggest consequence for error. We also need a process to track, analyze and improve operational efforts. We focus on the following concepts of operational excellence:\\
+    
+    
+    \textbf{Infrastructure as a Code (IaC)}: \textit{IaC is the process of managing the infrastructure through machine-readable configuration files}; this is the foundation allowing automation of the infrastructure. The IaC platform, given templates describing the needed resources, automatically provision and configure such resources on our behalf. \textit{IaC is a declarative and automated way of provisioning infrastructure}. IaC is implemented in AWS through the service \textbf{CloudFormation}: it requires declaring our resources using JSON or YAML. Alternatively the \textbf{Cloud Development Kit (CDK)} allows to author such templates in JavaScrit, Python or Java.\\
+    
+    \textbf{Observability}: \textit{is the process of measuring the internal state of your system to achieve some desired end state}; you can track the impact of your automation and continuously improve it. Implementation of \textit{Observability} involves the following steps:
+    \begin{itemize}
+    \item \textbf{Collection}: \textit{aggregating all metrics necessary when assessing the state of the system}
+    \begin{itemize}
+    \item\textit{Infrastructure-level metrics} are automatically emitted by AWS services and collected by the \textbf{CloudWatch} service; sometimes structured logs are emitted and can be enabled and collected through \textit{CloudWatch Logs}.
+    \item\textit{Applicaiton-level metrics}: generated by your software and collected with \textit{CloudWatch Custom Metrics}. Software logs can be stored using \textit{CloudWatch Logs} or uploaded to \textbf{S3}.
+    \item\textit{Account-level metrics} are logged by your AWS account and collected by the \textbf{CloudTrail} service.
+    \end{itemize}
+    
+    
+    \item \textbf{Analytics}: \textit{analytics solutions and databases provided by AWS can be used to collect metrics.}
+    \begin{itemize}
+    \item To analyze logs stored in \textit{CloudWatch Logs}, consider using \textit{CloudWatch Logs Insight}, a service that lets you interactively search and analyze your Cloudwatch log data.
+    \item To analyze logs stored in \textbf{S3}, consider using \textbf{Athena}, a serverless query service.
+    \item  To analyze structure data, consider using \textbf{RDS}, a managed relational database service.
+    \item To analyze large amounts of structured data, consider using \textbf{RedShift}, a managed petabyte-scale data warehouse service.
+    \item To analyze log-based data, consider using the \textit{Elasticsearch Service}, a managed version of \textbf{ElasticSearch}, the popular open-source analytics engine.
+    \end{itemize}
+    
+    \item \textbf{Action}: after collection and analysis of metrics those can be used to achieve one of the following outcome or process:
+    \begin{itemize}
+    \item \textit{Monitoring \& alarming}: \textit{CloudWatch Alarms} can notify when a systeam breaches the safety threshold for a particular metric, manual or automatic mitigation follows.
+    \item \textit{Dashboards}: You can create dashboards of your metric using \textit{CloudWatch Dashboards}; they can track and improve service performance over time.
+    \item \textit{Data-driven decisions}: you can track performance and business KPIs to make data.driven product decisions.
+    \end{itemize}
+    \end{itemize}
+    \item \textit{Conclusions} In this module, you have learned about the pillar of operational excellence. You have learned about the mental model of thinking about operations as automation. You have learned about IaC and how it can be used to provision your services automatically using the same tools and processes that you currently use for code. You have learned about observability and how to collect, analyze, and act on metrics to continuously improve your operational efforts.
+    \item \textit{Additional resources} : \href{https://d1.awsstatic.com/whitepapers/architecture/AWS-Operational-Excellence-Pillar.pdf?e=gs2020&p=fundcore}{Operational Excellence Pillar Whitepaper}
+\end{itemize}
+
+\subsubsection{Security}
+\href{https://aws.amazon.com/getting-started/fundamentals-core-concepts/?nc1=h_ls}{CONTINUE FROM HERE}
+\begin{itemize}
+    \item \textit{Mental model}
+    \item \textit{Concepts}
+    \item \textit{Conclusions}
+    \item \textit{Additional resources}
+\end{itemize}
+
+\subsubsection{Reliability}
+\begin{itemize}
+    \item \textit{Mental model}
+    \item \textit{Concepts}
+    \item \textit{Conclusions}
+    \item \textit{Additional resources}
+\end{itemize}
+
+\subsubsection{Performance Efficiency}
+\begin{itemize}
+    \item \textit{Mental model}
+    \item \textit{Concepts}
+    \item \textit{Conclusions}
+    \item \textit{Additional resources}
+\end{itemize}
+
+\subsubsection{Cost optimization}
+\begin{itemize}
+    \item \textit{Mental model}
+    \item \textit{Concepts}
+    \item \textit{Conclusions}
+    \item \textit{Additional resources}
+\end{itemize}
+
+\newpage
+\section*{Module 3: }
+\begin{itemize}
+\item Summarize the benefits of AWS;
+\item Describe differences between on-demand delivery and cloud deployments;
+\item Summarize the pay-as-you-go pricing model.
+\end{itemize}
+
+
+\newpage
+\section{Services}
+\begin{itemize}
+    \item \textbf{[EC2] AWS Elastic Compute Cloud}
+    \item \href{https://docs.aws.amazon.com/cloudformation/?id=docs_gateway}{\textbf{CloudFormation}}
+    \item \href{https://docs.aws.amazon.com/cdk/?id=docs_gateway}{\textbf{[CDK] Cloud Development Kit}}
+\end{itemize}
+
+%\newpage
+%\section{Some Basics of \LaTeX{}}
+%
+%\subsection{Useful commands for text formatting, some that we built for you}
+%
+%\ea 
+%	\begin{tabular}[t]{l l l}
+%		\toprule
+%		\textbf{Symbol/Annotation} & \textbf{Example} & \textbf{Code} \\ \midrule
+%		Ellipsis & \dots & \verb|\dots| \\
+%		Subscript & NP\subs{i} & \verb|NP\subs{i}| \\
+%		Superscript & NP\supers{i} & \verb|NP\supers{i}|\\ 
+%		Bold & \textbf{bold} & \verb|\textbf{bold}| \\
+%		Italic & \textit{italic} & \verb|\textit{italic}| \\
+%		Small Caps & \textsc{small caps} & \verb|\textsc{small caps}| \\
+%		Strikeout & \sout{strikeout} & \verb|\sout{strikeout}| \\
+%		Underline & \underline{underline} & \verb|\underline{underline}| \\
+%		circle something in text & \circled{something} & \verb|\circled{something}| \\
+%		Highlight something & \hl{something} & \verb|\hl{something}| \\
+%		Null & \nothing  & \verb|\nothing|\\
+%		Theta & \texttheta & \verb|\texttheta|  \\
+%		Phi & \ph & \verb|\ph| \\
+%		Hash & \# & \verb|\#| \\
+%		Label a left bracket & \Lb{VP} kick it ] & \verb|\Lb{VP}|\\
+%		Label a right bracket & [[kick\Rb{rt}ed\Rb{wd} & \verb|\Rb{rt},\Rb{wd}|\\
+%		Trace with index & \tr{k}  & \verb|\tr{k}| \\
+%		Bar-level node & X\1 & \verb|X\1| \\
+%		Head Node & X\0 & \verb|X\0| \\
+%		\bottomrule
+%	\end{tabular}
+%\z
+%
+%\newpage 
+%
+%\begin{itemize}
+%
+%\item If you want to make a bulleted list, look at how this list is formatted in the .tex document with the ``itemize'' environment.
+%
+%\item As you've already seen if you are paying attention to the .tex document on the left of your screen, sections, subsections, and sub-subsection are formatted with the commands \verb|\section{}|, \verb|\subsection{}|, and \verb|\subsubsection{}|, respectively.
+%
+%\item Look at the .tex document to see how we bolded \textbf{this text} (and Overleaf has a shortcut to make it easy, Cmd-B on Macs, Ctrl-B on PCs). \textit{Similarly for italics}, Overleaf provides a shortcut (Cmd-I on Macs, Ctrl-I on PCs).
+%
+%\item Write footnotes like this.\footnote{Hey, I'm a footnote.}
+%
+%\end{itemize}
+%
+%\subsection{Numbered examples}
+%
+%\ea 
+%Numbered examples look like this.
+%\z 
+%
+%\noindent Interlinear glossing can be seen in (\ref{BukusuNegation}), which also illustrates cross-references as well.
+%
+%\ea \label{BukusuNegation}
+%\gll Peter se-a-la-ba a-kula sitabu ta. \hspace{2 in}  \textbf{Lubukusu} \\
+%Peter NEG-SA-TNS-be SA-buy book NEG \\
+%\glt `Peter will not be buying a book.'
+%\z
+%
+%%See the Quick Reference Guide for more detailed instructions on numbered examples, interlinear glossing, and cross-references
+%
+%\subsection{Tables}
+%
+%A table is illustrated in (\ref{SampleTable}), though tables can be formatted in many ways (see the Quick Reference Guide).
+%
+%\ea \label{SampleTable}
+%\begin{tabular}[t]{|c|c|c|}
+%\hline
+%\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+%\hline\hline
+%cell 1 & cell 2 & cell 3 \\
+%\hline
+%cell 4 & cell 5 & cell 6 \\
+%\hline
+%cell 7 & cell 8 & cell 9 \\
+%\hline
+%\end{tabular}
+%
+%\z 
+%
+%\section{Where to go to learn more}
+%
+%\begin{itemize}
+%    \item Pedro Martins has already written a tutorial specifically for linguists that also happens to be the best beginner-oriented \LaTeX{} tutorial that we have ever found. You can find it here: \url{http://ptmartins.info/latex/}.
+%    \item Our \href{https://www.overleaf.com/latex/templates/pomona-linguistics-quick-reference-guide/jthrqbrktmrd}{Quick Reference Guide} includes detailed instructions for how to format things for phonology (e.g. SPE rules, derivations, tableaux, etc) as well as for syntax (e.g. trees, interlinear glosses), as well as additional details about general \LaTeX{} formatting. It should have every kind of formatting you need to write a Pomona Linguistics paper.
+%    \item Michael Diercks aggregates \LaTeX{} resources useful for LGCS students on \href{http://pages.pomona.edu/~mjd14747/tex.html}{his website}.
+%
+%\end{itemize}
+
+
+\end{document}
