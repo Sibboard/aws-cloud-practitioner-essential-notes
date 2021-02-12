@@ -14,10 +14,6 @@
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
 
-%All LaTeX documents have a ``preamble'' that includes the packages and macros needed to make the document compile. The file `PomonaLgcsFormatting.tex' includes the preamble for this template. You can see it in the file list on the left frame of your screen, and this document is instructed to use it with the \input{} command below.
-
-
-
 \title{AWS Cloud Practitioner Essentials \href{https://www.aws.training/Details/eLearning?id=60697}{(course link)} }
 \author{Gabriele Libianchi}
 \date{\today} 
@@ -170,14 +166,55 @@ This pillar focuses on how you can continuously improve your ability to run syst
     \item \textit{Conclusions}
     \item \textit{Additional resources}
 \end{itemize}
+\newpage
+\section{Compute in the cloud}
+\begin{itemize}
+\item Describe the benefits of Amazon EC2 at a basic level.
+\item Identify the different Amazon EC2 instance types.
+\item Differentiate between the various billing options for Amazon EC2.
+\item Summarize the benefits of Amazon EC2 Auto Scaling.
+\item Summarize the benefits of Elastic Load Balancing.
+\item Give an example of the uses for Elastic Load Balancing.
+\item Summarize the differences between Amazon Simple Notification Service (Amazon SNS) and Amazon Simple Queue Service (Amazon SQS).
+\item Summarize additional AWS compute options.
+\end{itemize}
+
+\subsection{EC2 : Amazon Elastic Compute Cloud introduction}
+\textbf{EC2} provides secure, resizable compute capacity in the cloud as Amazon EC2 instances.
+In opposition to get up and running on-premises servers, \textbf{EC2} is highly flexible, cost effective and quick. You just have to request the EC2 instances you want and launch them, then you can stop or terminate them, and maybe change them.\\
+
+EC2 runs on top of physical host machines managed by AWS using virtualization technology. When you spin up an EC2 instance, you aren't necessarily taking an entire host to yourself. Instead, you are \textit{sharing the host with multiple other instances (VM's)}. And a \textbf{hypervisor} running on the host machine is responsible for sharing the underlying physical resources between the virtual machines.\\ This idea of sharing underlying hardware is called \textbf{multitenancy}. The hypervisor is responsible for coordinating this multitenancy and it is managed by AWS. The hypervisor is responsible for \textit{isolating the virtual machines from each other} as they share resources from the host. This means EC2 instances are secure. Even though they may be sharing resources, one EC2 instance is not aware of any other EC2 instances also on that host. They are secure and separate from each other.
+
+EC2 provides flexibility and control over the configuration of the instances: OS, Software, ecc. \textbf{Vertical Scaling}: Instances are resizeable in terms of memory and CPU. You also control the networking aspect of EC2: the types of requests to the server, if they are publicly or privately accessible. \textbf{Compute as a Service (CaaS)} model.
+
+
+\subsection{EC2 Instance types}
+Each Amazon EC2 instance type is grouped under an instance family and are optimized for a certain type of task; the families are:
+\begin{itemize}
+\item \textbf{General purpose}: good balance of compute, memory and networking resources (roughly equivalent). Suitable for applications that does not require optimization in any single resource area: web services, code repositories, app servers, gaming servers, small medium DBs. 
+\item \textbf{Compute optimized}: ideal for compute intensive tasks that benefits from high-performance processors (gaming servers, HPC, scientific modeling, applications \dots),
+\item \textbf{Memory optimized}: deliver fast performance for workloads that process large datasets in memory. Ideal for workloads that requires large amounts of data to be preloaded before running an application (high-performance databases, real time processing of large amount of unstructured data. Memory optimized instances enable you to run workloads with high memory  needs and receive great performance
+\item \textbf{Accelerated computing} use hardware accelerations, or coprocessors, for memory intensive tasks (accelerated computing, floats calculations, graphic processing, data pattern matching,game/application streaming). A hardware accelerator is a component that can expedite data processing.
+\item \textbf{Storage optimized} designed for workloads that require high, sequential read and write access to large datasets on local storage. Suitable workoads can be: distributed file systems, data warehousing, high frequency online transaction processing (OLTP) systems. In computing, the term input/output operations per second (IOPS) is a metric that measures the performance of a storage device. It indicates how many different input or output operations a device can perform in one second. Storage optimized instances are designed to deliver tens of thousands of low-latency, random IOPS to applications.
+\end{itemize}
+
+
+\subsection{EC2 pricing}
+
+There are several different billing options:
+ \begin{itemize}
+ \item \textbf{On-Demand}: per hour/per second, depends on instance type. no need for upfront payments or long term commitments. Don't need contract or communication.
+ \item \textbf{Savings Plan}: low prices on EC2 in exchange of a commitment on a consistent amount of usage measured in dollars per-hour for 1 or 3 years term. You can save up to 72\% on AWS compute usage regardless of everything (instance type, size, OS, region \dots). This plan also applies to \textbf{AWS Fargate} and \textbf{AWS Lambda} usage (serverless compute options).
+ \item \textbf{Reserved instances}: suited for steady-state workloads or ones with predictable usage. They offer up to 75\% of savings compared to On-Demand pricing, if you commit to 1 or 3 years; there are 3 payment options all/partial/no upfront.
+ \item \textbf{Spot Instances}: they allow you to request spare EC2 computing capacity for up to 90\% off the On-Demand pricing. 
+ \end{itemize}
 
 \newpage
 \section*{Module 3: }
 \begin{itemize}
-\item Summarize the benefits of AWS;
-\item Describe differences between on-demand delivery and cloud deployments;
-\item Summarize the pay-as-you-go pricing model.
+\item 
 \end{itemize}
+
 
 
 \newpage
@@ -188,95 +225,6 @@ This pillar focuses on how you can continuously improve your ability to run syst
     \item \href{https://docs.aws.amazon.com/cdk/?id=docs_gateway}{\textbf{[CDK] Cloud Development Kit}}
 \end{itemize}
 
-%\newpage
-%\section{Some Basics of \LaTeX{}}
-%
-%\subsection{Useful commands for text formatting, some that we built for you}
-%
-%\ea 
-%	\begin{tabular}[t]{l l l}
-%		\toprule
-%		\textbf{Symbol/Annotation} & \textbf{Example} & \textbf{Code} \\ \midrule
-%		Ellipsis & \dots & \verb|\dots| \\
-%		Subscript & NP\subs{i} & \verb|NP\subs{i}| \\
-%		Superscript & NP\supers{i} & \verb|NP\supers{i}|\\ 
-%		Bold & \textbf{bold} & \verb|\textbf{bold}| \\
-%		Italic & \textit{italic} & \verb|\textit{italic}| \\
-%		Small Caps & \textsc{small caps} & \verb|\textsc{small caps}| \\
-%		Strikeout & \sout{strikeout} & \verb|\sout{strikeout}| \\
-%		Underline & \underline{underline} & \verb|\underline{underline}| \\
-%		circle something in text & \circled{something} & \verb|\circled{something}| \\
-%		Highlight something & \hl{something} & \verb|\hl{something}| \\
-%		Null & \nothing  & \verb|\nothing|\\
-%		Theta & \texttheta & \verb|\texttheta|  \\
-%		Phi & \ph & \verb|\ph| \\
-%		Hash & \# & \verb|\#| \\
-%		Label a left bracket & \Lb{VP} kick it ] & \verb|\Lb{VP}|\\
-%		Label a right bracket & [[kick\Rb{rt}ed\Rb{wd} & \verb|\Rb{rt},\Rb{wd}|\\
-%		Trace with index & \tr{k}  & \verb|\tr{k}| \\
-%		Bar-level node & X\1 & \verb|X\1| \\
-%		Head Node & X\0 & \verb|X\0| \\
-%		\bottomrule
-%	\end{tabular}
-%\z
-%
-%\newpage 
-%
-%\begin{itemize}
-%
-%\item If you want to make a bulleted list, look at how this list is formatted in the .tex document with the ``itemize'' environment.
-%
-%\item As you've already seen if you are paying attention to the .tex document on the left of your screen, sections, subsections, and sub-subsection are formatted with the commands \verb|\section{}|, \verb|\subsection{}|, and \verb|\subsubsection{}|, respectively.
-%
-%\item Look at the .tex document to see how we bolded \textbf{this text} (and Overleaf has a shortcut to make it easy, Cmd-B on Macs, Ctrl-B on PCs). \textit{Similarly for italics}, Overleaf provides a shortcut (Cmd-I on Macs, Ctrl-I on PCs).
-%
-%\item Write footnotes like this.\footnote{Hey, I'm a footnote.}
-%
-%\end{itemize}
-%
-%\subsection{Numbered examples}
-%
-%\ea 
-%Numbered examples look like this.
-%\z 
-%
-%\noindent Interlinear glossing can be seen in (\ref{BukusuNegation}), which also illustrates cross-references as well.
-%
-%\ea \label{BukusuNegation}
-%\gll Peter se-a-la-ba a-kula sitabu ta. \hspace{2 in}  \textbf{Lubukusu} \\
-%Peter NEG-SA-TNS-be SA-buy book NEG \\
-%\glt `Peter will not be buying a book.'
-%\z
-%
-%%See the Quick Reference Guide for more detailed instructions on numbered examples, interlinear glossing, and cross-references
-%
-%\subsection{Tables}
-%
-%A table is illustrated in (\ref{SampleTable}), though tables can be formatted in many ways (see the Quick Reference Guide).
-%
-%\ea \label{SampleTable}
-%\begin{tabular}[t]{|c|c|c|}
-%\hline
-%\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
-%\hline\hline
-%cell 1 & cell 2 & cell 3 \\
-%\hline
-%cell 4 & cell 5 & cell 6 \\
-%\hline
-%cell 7 & cell 8 & cell 9 \\
-%\hline
-%\end{tabular}
-%
-%\z 
-%
-%\section{Where to go to learn more}
-%
-%\begin{itemize}
-%    \item Pedro Martins has already written a tutorial specifically for linguists that also happens to be the best beginner-oriented \LaTeX{} tutorial that we have ever found. You can find it here: \url{http://ptmartins.info/latex/}.
-%    \item Our \href{https://www.overleaf.com/latex/templates/pomona-linguistics-quick-reference-guide/jthrqbrktmrd}{Quick Reference Guide} includes detailed instructions for how to format things for phonology (e.g. SPE rules, derivations, tableaux, etc) as well as for syntax (e.g. trees, interlinear glosses), as well as additional details about general \LaTeX{} formatting. It should have every kind of formatting you need to write a Pomona Linguistics paper.
-%    \item Michael Diercks aggregates \LaTeX{} resources useful for LGCS students on \href{http://pages.pomona.edu/~mjd14747/tex.html}{his website}.
-%
-%\end{itemize}
 
 
 \end{document}
